@@ -1,48 +1,69 @@
-public class Matriz{
+public class Matriz
+{
 
 	private double mat[][];
-	private long linhas;
+	private int linhas;
+	private int colunas;
 
-	public Matriz(int linhas){
+	public Matriz(int linhas) throws Exception
+	{
+		if(linhas < 1)
+			throws new Exception("Número de linhas menor que 0");
+
 		mat = new double[linhas][linhas+1];
 		this.linhas=linhas;
+		this.colunas= linhas + 1;
 	}
 
-	public void incluir(int i, int j, double valor) throws Exception{
+	public void incluir(int i, int j, double valor) throws Exception
+	{
 		if(i < 0 || j < 0)
 			throw new Exception("valor invalido");
+
 		mat[i][j] = valor;
 	}
 
-	public double getValor(int i, int j)throws Exception{
+	public double getValor(int i, int j)throws Exception
+	{
 		if(i < 0 || i < j)
 			throw new Exception("valor invalido");
+
 		return mat[i][j];
 	}
 
-	public float getLinhas(){
+	public int getLinhas()
+	{
 		return this.linhas;
 	}
 
+	public int getColunas()
+	{
+		return this.colunas;
+	}
 
-	public String toString(){
+	public String toString()
+	{
 		String ret = "";
-		for(int i = 0; i < linhas; i++){
-			for(int j=0; j<linhas+1; j++)
+		for(int i = 0; i < linhas; i++)
+		{
+			for(int j=0; j<colunas; j++)
 				ret = Double.toString(mat[i][j]);
 		}
 		return ret;
 	}
 
-	public int HashCode(){
+	public int HashCode()
+	{
 		int ret = 19185;
-		for(int i = 0; i < linhas; i++){
-			for(int j=0; j<linhas+1; j++)
+		for(int i = 0; i < linhas; i++)
+		{
+			for(int j=0; j<colunas; j++)
 				ret = 3*19185 + Double.valueOf(mat[i][j]).hashCode();
 		}
 		return ret;
 	}
-	public boolean Equals(Object obj){
+	public boolean Equals(Object obj)
+	{
 		if (this==obj)
 			return true;
 
@@ -55,7 +76,7 @@ public class Matriz{
 		Matriz aux = (Matriz)obj;
 
 		for(int i = 0; i < linhas; i++){
-			for(int j=0; j<linhas+1; j++)
+			for(int j=0; j<colunas; j++)
 				if(aux.mat[i][j] != mat[i][j])
 					return false;
 		}
@@ -65,16 +86,19 @@ public class Matriz{
 
 		return true;
 	}
-	 public Matriz(Matriz m) throws Exception{
+	public Matriz(Matriz m) throws Exception
+	{
 		 if(m==null)
 		 	throw new Exception("Matriz nula");
 		 mat = m.mat;
 		 linhas = m.linhas;
 	}
 
-	public Object clone(){
+	public Object clone()
+	{
 		Matriz ret = null;
-		try{
+		try
+		{
 			ret = new Matriz(this);
 		}
 		catch(Exception e){}
