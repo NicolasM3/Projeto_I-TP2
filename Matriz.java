@@ -96,6 +96,7 @@ public class Matriz
 		 	throw new Exception("Matriz nula");
 		 mat = m.mat;
 		 linhas = m.linhas;
+		 colunas = m.colunas;
 	}
 
 	public Object clone()
