@@ -60,8 +60,10 @@ public class Matriz
 		for(int i = 0; i < linhas; i++)
 		{
 			for(int j=0; j<colunas; j++)
-				ret = 3*19185 + Double.valueOf(mat[i][j]).hashCode();
+				ret = 3*ret + Double.valueOf(mat[i][j]).hashCode();
 		}
+		ret = 3*ret + Integer.valueOf(linhas).hashCode();
+		ret = 3*ret + Integer.valueOf(colunas).hashCode();
 		return ret;
 	}
 	public boolean Equals(Object obj)
