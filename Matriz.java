@@ -8,7 +8,7 @@ public class Matriz
 	public Matriz(int linhas) throws Exception
 	{
 		if(linhas < 1)
-			throws new Exception("Número de linhas menor que 0");
+			throw new Exception("Número de linhas menor que 0");
 
 		mat = new double[linhas][linhas+1];
 		this.linhas=linhas;
@@ -45,10 +45,12 @@ public class Matriz
 	{
 		String ret = "";
 		for(int i = 0; i < linhas; i++)
-		{
 			for(int j=0; j<colunas; j++)
-				ret = Double.toString(mat[i][j]);
-		}
+				ret += " valor na posicao: "+i+" , "+j+Double.toString(mat[i][j]);
+
+		ret +="quanidade de linhas: "+linhas;
+		ret +="quanidade de colunas: "+colunas;
+
 		return ret;
 	}
 
