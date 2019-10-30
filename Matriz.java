@@ -85,7 +85,7 @@ public class Matriz
 					return false;
 		}
 
-		if(aux.linhas != this.linhas)
+		if(aux.linhas != this.linhas || aux.colunas != this.colunas)
 			return false;
 
 		return true;
