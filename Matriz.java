@@ -79,11 +79,10 @@ public class Matriz
 
 		Matriz aux = (Matriz)obj;
 
-		for(int i = 0; i < linhas; i++){
+		for(int i = 0; i < linhas; i++)
 			for(int j=0; j<colunas; j++)
-				if(aux.mat[i][j] != mat[i][j])
+				if(aux.mat[i][j] != this.mat[i][j])
 					return false;
-		}
 
 		if(aux.linhas != this.linhas || aux.colunas != this.colunas)
 			return false;

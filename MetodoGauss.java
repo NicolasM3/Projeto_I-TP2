@@ -82,4 +82,34 @@ public class MetodoGauss{
 		transformarEmZeros();
 		return getResultado();
 	}
+	public String toString(){
+		String ret = "";
+		ret += m.toString();
+		return ret;
+	}
+
+	public int hashCode(){
+		int ret = 19185;
+		ret = ret*3 + m.hashCode();
+		return ret;
+	}
+
+	public boolean Equals(Object obj){
+		if (this==obj)
+			return true;
+
+		if (obj==null)
+			return false;
+
+		if (this.getClass()!=obj.getClass())
+			return false;
+
+		MetodoGauss aux = (MetodoGauss)obj;
+
+		if(!aux.m.Equals(this.m))
+			return false;
+
+		return true;
+	}
+	// to do
 }
