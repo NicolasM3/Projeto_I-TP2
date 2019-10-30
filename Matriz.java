@@ -41,15 +41,30 @@ public class Matriz
 		return this.colunas;
 	}
 
-	public String toString()
+	// TODO:  escolher toString()
+	/* public String toString()
 	{
 		String ret = "";
 		for(int i = 0; i < linhas; i++)
 			for(int j=0; j<colunas; j++)
-				ret += " valor na posicao: "+i+" , "+j+Double.toString(mat[i][j]);
+				ret += " valor na posicao: "+ i +" , "+ j + ": " + Double.toString(mat[i][j])+ "\n";
 
 		ret +="quanidade de linhas: "+linhas;
 		ret +="quanidade de colunas: "+colunas;
+
+		return ret;
+	} */
+
+	public String toString()
+	{
+		String ret = "Matriz["+ linhas +"]["+ colunas +"] = \n";
+		for(int i = 0; i < linhas; i++)
+		{
+			for(int j=0; j<colunas; j++)
+				ret += mat[i][j] + " ";
+			ret += "\n";
+	}
+
 
 		return ret;
 	}
