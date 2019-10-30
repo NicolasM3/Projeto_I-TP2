@@ -6,7 +6,9 @@ public class Main
     {
 		try
 		{
-			Matriz coeficientes = Leitor.LerArquivo(new File("dados.txt"));
+			System.out.print("Digite o nome do arquivo: ");
+			String arq =  Teclado.getUmString();
+			Matriz coeficientes = Leitor.LerArquivo(new File(arq));
 			System.err.println(coeficientes.toString());
 		}
 		catch(Exception ex)

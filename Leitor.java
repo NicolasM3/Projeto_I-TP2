@@ -8,9 +8,6 @@ public class Leitor
 		if((!file.exists()))
 			throw new Exception("nenhum documento definido");
 
-		if(file == null)
-			throw new Exception("Arquivo null");
-
 		Matriz ret = null;
 
 		try
