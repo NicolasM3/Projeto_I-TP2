@@ -1,22 +1,50 @@
+//TO DO: tornar classe singleton
 public class MetodoGauss{
 
-	private Matriz m;
+	private static Matriz m;
+	private static double[] ret;
 
-	public MetodoGauss(Matriz mat)throws Exception{
-		m = new Matriz(mat);
+	public double[] Calcular(Matriz mat)throws Exception
+	{
+		if(mat == null)
+			throw new Exception("Matriz nula");
+
+		mat = m;
+
+		if(!isSolucionavel())
+			throw new Exception("Sistema de equações impossível de se resolver");
+
+
+		return ret
 	}
-	//to do metodo dividir linha pelas proximas
+
+	private static boolean isSolucionavel()
+	{
+		//TO DO: verificar se é solucionavel
+	}
+
+
+	private boolean HáZerosNaDiagonal()
+	{
+		for(int i=0; i<m.getLinhas(); i++)
+			if(m.getValor(i,i)==0)
+			{
+				return true;
+			}
+
+		return false;
+	}
+
+	// TO DO: arrumar método tirarZerosDaDiagonal()
 	private void tirarZerosDaDiagonal(){
-		try{
-			for(int i=0; i<m.getLinhas(); i++)
-				if(m.getValor(i,i)==0){
-					boolean achou=false;
-					for(int n=0; n<m.getLinhas()+1; n++)
-						if(m.getValor(i, n)!=0 && achou==false){
-							m.incluir(i, i, m.getValor(i, n));
-							m.incluir(i, n, 0.0);
-							achou=true;
-						}
+		try
+		{
+			for(int n=0; n<m.getLinhas()+1; n++)
+				if(m.getValor(i, n)!=0 && achou==false)
+				 {
+					m.incluir(i, i, m.getValor(i, n));
+					m.incluir(i, n, 0.0);
+					achou=true;
 				}
 		}
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
@@ -76,40 +104,11 @@ public class MetodoGauss{
 		return aux;
 	}
 
-	public double[] calculoGauss(){
+	/*public double[] calculoGauss(){
 		tirarZerosDaDiagonal();
 		tornarDiagonal1();
 		transformarEmZeros();
 		return getResultado();
-	}
-	public String toString(){
-		String ret = "";
-		ret += m.toString();
-		return ret;
-	}
-
-	public int hashCode(){
-		int ret = 19185;
-		ret = ret*3 + m.hashCode();
-		return ret;
-	}
-
-	public boolean Equals(Object obj){
-		if (this==obj)
-			return true;
-
-		if (obj==null)
-			return false;
-
-		if (this.getClass()!=obj.getClass())
-			return false;
-
-		MetodoGauss aux = (MetodoGauss)obj;
-
-		if(!aux.m.Equals(this.m))
-			return false;
-
-		return true;
-	}
-	// to do
+	}*/
+	//TO DO: metodo dividir linha pelas proximas
 }
