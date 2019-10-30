@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Leitor
 {
-	public static double[][] LerArquivo(File file) throws Exception
+	public static Matriz LerArquivo(File file) throws Exception
 	{
 		if((!file.exists()))
 			throw new Exception("nenhum documento definido");
@@ -11,7 +11,7 @@ public class Leitor
 		if(file == null)
 			throw new Exception("Arquivo null");
 
-		double ret[][] = null;
+		Matriz ret = null;
 
 		try
 		{
@@ -20,7 +20,7 @@ public class Leitor
 			int qtdEquacoes = Integer.parseInt(arquivo.readLine());
 			String a = "";
 
-			ret = new double[qtdEquacoes][qtdEquacoes + 1];
+			ret = new Matriz(qtdEquacoes);
 
 			for (int i=0; i < qtdEquacoes; i++)
 			{
@@ -29,7 +29,7 @@ public class Leitor
 				while (quebrador.hasMoreTokens())
 				{
 					a = quebrador.nextToken();
-					ret[i][coeficiente] = Double.parseDouble(a.trim());
+					ret.incluir(i, coeficiente, Double.parseDouble(a.trim()));
 					coeficiente++;
 				}
 			}

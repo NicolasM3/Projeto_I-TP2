@@ -8,7 +8,7 @@ public class Matriz
 	public Matriz(int linhas) throws Exception
 	{
 		if(linhas < 1)
-			throw new Exception("Número de linhas menor que 0");
+			throw new Exception("Número de linhas menor que 1");
 
 		mat = new double[linhas][linhas+1];
 		this.linhas=linhas;
