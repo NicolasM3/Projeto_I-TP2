@@ -5,7 +5,7 @@ public class Leitor
 {
 	public static Matriz LerArquivo(File file) throws Exception
 	{
-		if((!file.exists()))
+		if(!file.exists())
 			throw new Exception("nenhum documento definido");
 
 		Matriz ret = null;

@@ -25,7 +25,7 @@ public class Matriz
 
 	public double getValor(int i, int j)throws Exception
 	{
-		if(i < 0 || i < j)
+		if(i < 0 || j < 0)
 			throw new Exception("valor invalido");
 
 		return mat[i][j];
@@ -104,6 +104,7 @@ public class Matriz
 
 		return true;
 	}
+
 	public Matriz(Matriz m) throws Exception
 	{
 		 if(m==null)
