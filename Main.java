@@ -9,7 +9,8 @@ public class Main
 			System.out.print("Digite o nome do arquivo: ");
 			String arq =  Teclado.getUmString();
 			Matriz coeficientes = Leitor.LerArquivo(new File(arq));
-			System.err.println(coeficientes.toString());
+			MetodoGauss.Calcular(coeficientes);
+
 		}
 		catch(Exception ex)
 		{

@@ -13,16 +13,24 @@ public class MetodoGauss{
 		if(!isSolucionavel())
 			throw new Exception("Sistema de equações impossível de se resolver");
 
-		HaZerosNaDiagonal();
+		int teste = HaZerosNaDiagonal();
+
+		while(teste >= 0)
+		{
+			tirarZerosDaDiagonal(teste);
+			teste = HaZerosNaDiagonal();
+		}
+
+		for(int i=0; i<m.getLinhas(); i++)
+		{
+			for(int j=0; j<m.getColunas(); j++)
+				System.out.print(m.getValor(i,j) + " ");
+			System.out.println("");
+		}
 
 		tornarDiagonal1();
-		for(int i=0; i<m.getLinhas(); i++)
-			for(int j=0; j<m.getColunas(); j++)
-		System.out.println(m.getValor(i,j));
 		transformarEmZeros();
 		double[] aux = getResultado();
-		for(int i=0; i<aux.length; i++)
-			System.out.println(aux[i]);
 
 		return getResultado();
 	}
@@ -32,7 +40,6 @@ public class MetodoGauss{
 		for(int i=0; i<m.getLinhas(); i++)
 			if(vetorDivisao[i] != vetorDivisao2[i])
 				return false;
-
 
 		return true;
 	}
@@ -63,31 +70,33 @@ public class MetodoGauss{
 	}
 
 
-	private static void HaZerosNaDiagonal()
+	private static int HaZerosNaDiagonal()
 	{
 		try
 		{
 			for(int i=0; i<m.getLinhas(); i++)
 				if(m.getValor(i,i) == 0)
 				{
-					tirarZerosDaDiagonal(i);
+					return i;
 				}
 		}
 		catch(Exception ex)
 		{}
+		return -1;
 	}
 
-	private static void tirarZerosDaDiagonal(int i){
+	private static void tirarZerosDaDiagonal(int linha){
 		try
 		{
-			boolean achou=false;
-			for(int n=0; n<m.getLinhas()+1; n++)
-				if(m.getValor(i, n)!=0 && achou==false)
-				 {
-					m.incluir(i, i, m.getValor(i, n));
-					m.incluir(i, n, 0.0);
-					achou=true;
-				}
+			for(int j = 0; j < m.getLinhas() - 1; e++)
+			{
+
+				if(linhaNova < 0)
+					linhaNova = m.getLinha();
+
+				for(int i = 0; i < m.getColunas() - 2; i++)
+					m.inserir(linhaNova, i, getValor(j, i));
+			}
 		}
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
 	}
