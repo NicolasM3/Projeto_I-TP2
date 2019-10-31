@@ -14,10 +14,7 @@ public class MetodoGauss{
 		if(!isSolucionavel())
 			throw new Exception("Sistema de equações impossível de se resolver");
 
-		while(HáZerosNaDiagonal())
-			tirarZerosDaDiagonal();
-
-		tirarZerosDaDiagonal();
+		HaZerosNaDiagonal();
 		//transformarEmZeros();
 		//getResultado();
 
@@ -62,16 +59,15 @@ public class MetodoGauss{
 	}
 
 
-	private static boolean HáZerosNaDiagonal() throws Exception
+	private static void HaZerosNaDiagonal() throws Exception
 	{
 		try
 		{
 			for(int i=0; i<m.getLinhas(); i++)
 				if(m.getValor(i,i) == 0)
 				{
-					return true;
+					tirarZerosDaDiagonal(i);
 				}
-			return false;
 		}
 		catch(Exception ex)
 		{
@@ -80,16 +76,17 @@ public class MetodoGauss{
 	}
 
 	// TO DO: arrumar método tirarZerosDaDiagonal()
-	private static void tirarZerosDaDiagonal(){
+	private static void tirarZerosDaDiagonal(int i){
 		try
 		{
-			/*for(int n=0; n<m.getLinhas()+1; n++)
+			boolean achou=false;
+			for(int n=0; n<m.getLinhas()+1; n++)
 				if(m.getValor(i, n)!=0 && achou==false)
 				 {
 					m.incluir(i, i, m.getValor(i, n));
 					m.incluir(i, n, 0.0);
 					achou=true;
-				}*/
+				}
 		}
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
 	}
