@@ -2,7 +2,6 @@
 public class MetodoGauss{
 
 	private static Matriz m;
-	private static double ret[] = new double[10];
 
 	public static double[] Calcular(Matriz mat)throws Exception
 	{
@@ -15,12 +14,14 @@ public class MetodoGauss{
 			throw new Exception("Sistema de equações impossível de se resolver");
 
 		HaZerosNaDiagonal();
-		//transformarEmZeros();
-		//getResultado();
 
+		tornarDiagonal1();
+		transformarEmZeros();
+		double[] aux = getResultado();
+		for(int i=0; i<aux.length; i++)
+			System.out.println(aux[i]);
 
-
-		return ret;
+		return getResultado();
 	}
 
 	private static boolean estaNoVetor(double valorAVerificar, double[] vetor)
@@ -28,6 +29,7 @@ public class MetodoGauss{
 		for(double a:vetor)
 			if(a == valorAVerificar)
 			{
+				//System.out.println(a + "  |  " + valorAVerificar + " | " + vetor[0]);
 				return true;
 			}
 
@@ -44,7 +46,8 @@ public class MetodoGauss{
 				divisaoColuna = new double[m.getLinhas()];
 				for(int i = 0; i < m.getLinhas(); i++)
 				{
-					//System.err.println(m.getValor(j, i) + " " + m.getValor(j+1, i));
+					//System.err.println(m.getValor(j, i) + " " + m.getValor(j+1, i) + "\n " + i);
+					System.out.println(divisaoColuna[0]);
 					double result = m.getValor(j, i) / m.getValor(j + 1, i);
 					if(estaNoVetor(result, divisaoColuna))
 						return false;
@@ -59,7 +62,7 @@ public class MetodoGauss{
 	}
 
 
-	private static void HaZerosNaDiagonal() throws Exception
+	private static void HaZerosNaDiagonal()
 	{
 		try
 		{
@@ -70,12 +73,9 @@ public class MetodoGauss{
 				}
 		}
 		catch(Exception ex)
-		{
-			throw ex;
-		}
+		{}
 	}
 
-	// TO DO: arrumar método tirarZerosDaDiagonal()
 	private static void tirarZerosDaDiagonal(int i){
 		try
 		{
@@ -91,7 +91,7 @@ public class MetodoGauss{
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
 	}
 
-	/*private void void tornarDiagonal1(){
+	private static void tornarDiagonal1(){
 		try{
 			for(int i=0; i<m.getLinhas(); i++){
 				double aux = m.getValor(i,i);
@@ -117,7 +117,7 @@ public class MetodoGauss{
 	}
 
 
-	private double[] passarProVetor(double[] aux, int linha, double valorARemover){
+	private static double[] passarProVetor(double[] aux, int linha, double valorARemover){
 		try{
 			for(int i=0; i<m.getLinhas()+1; i++)
 				aux[i] = m.getValor(linha, i)*-valorARemover;
@@ -127,7 +127,7 @@ public class MetodoGauss{
 	}
 
 
-	private void subtrair(double[] subtrair, int linha){
+	private static void subtrair(double[] subtrair, int linha){
 		try{
 			for(int i=0; i<m.getLinhas()+1; i++){
 				double aux = m.getValor(linha, i)-subtrair[i];
@@ -137,7 +137,7 @@ public class MetodoGauss{
 		catch(Exception ex){}
 	}
 
-	private double[] getResultado(){
+	private static double[] getResultado(){
 		double[] aux = null;
 		try{
 			 aux = new double[m.getLinhas()];
@@ -148,11 +148,5 @@ public class MetodoGauss{
 		return aux;
 	}
 
-	public double[] calculoGauss(){
-		tirarZerosDaDiagonal();
-		tornarDiagonal1();
-		transformarEmZeros();
-		return getResultado();
-	}*/
 	//TO DO: metodo dividir linha pelas proximas
 }
