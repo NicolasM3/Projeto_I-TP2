@@ -16,6 +16,9 @@ public class MetodoGauss{
 		HaZerosNaDiagonal();
 
 		tornarDiagonal1();
+		for(int i=0; i<m.getLinhas(); i++)
+			for(int j=0; j<m.getColunas(); j++)
+		System.out.println(m.getValor(i,j));
 		transformarEmZeros();
 		double[] aux = getResultado();
 		for(int i=0; i<aux.length; i++)
@@ -24,34 +27,32 @@ public class MetodoGauss{
 		return getResultado();
 	}
 
-	private static boolean estaNoVetor(double valorAVerificar, double[] vetor)
+	private static boolean estaNoVetor(double[] vetorDivisao, double[] vetorDivisao2)
 	{
-		for(double a:vetor)
-			if(a == valorAVerificar)
-			{
-				//System.out.println(a + "  |  " + valorAVerificar + " | " + vetor[0]);
-				return true;
-			}
+		for(int i=0; i<m.getLinhas(); i++)
+			if(vetorDivisao[i] != vetorDivisao2[i])
+				return false;
 
-		return false;
+
+		return true;
 	}
 
 	public static boolean isSolucionavel()
 	{
 		try
 		{
-			double divisaoColuna [];
-			for(int j = 0; j < m.getColunas() - 2; j++)
+			double[] divisao = new double[m.getLinhas()];
+			double[] divisao2 = new double[m.getLinhas()];
+			for(int i = 0; i < m.getLinhas()-2; i++)
 			{
-				divisaoColuna = new double[m.getLinhas()];
-				for(int i = 0; i < m.getLinhas(); i++)
+				for(int j = 0; j < m.getLinhas(); j++)
 				{
 					//System.err.println(m.getValor(j, i) + " " + m.getValor(j+1, i) + "\n " + i);
-					System.out.println(divisaoColuna[0]);
-					double result = m.getValor(j, i) / m.getValor(j + 1, i);
-					if(estaNoVetor(result, divisaoColuna))
-						return false;
+					divisao[j] = m.getValor(i, j) / m.getValor(i + 1, i);
+					divisao2[j] = m.getValor(i+1, j) / m.getValor(i + 2, i);
 				}
+				if(estaNoVetor(divisao, divisao2))
+					return false;
 			}
 		}
 		catch(Exception ex)
@@ -90,7 +91,7 @@ public class MetodoGauss{
 		}
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
 	}
-
+	//TO DO corrigir a troca
 	private static void tornarDiagonal1(){
 		try{
 			for(int i=0; i<m.getLinhas(); i++){
