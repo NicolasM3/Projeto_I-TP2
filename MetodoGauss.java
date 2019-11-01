@@ -19,7 +19,6 @@ public class MetodoGauss{
 		{
 			tirarZerosDaDiagonal(teste);
 			teste = HaZerosNaDiagonal();
-			System.out.println("a");
 		}
 
 		for(int i=0; i< m.getLinhas(); i++)
@@ -96,10 +95,18 @@ public class MetodoGauss{
 				if(linhaNova < 0)
 					linhaNova = m.getLinhas() - 1;
 
-				for(int i = 0; i < m.getColunas() - 2; i++)
-					double a = m.getValor(j, i);
-					m.incluir(linhaNova, i, m.getValor(j, i));
-					m.incluir(linha, i, )
+				double auxiliar[] = new double[m.getColunas()];
+
+				for(int i = 0; i < m.getColunas(); i++)
+				{
+					auxiliar[i] = m.getValor(j, i);
+				}
+
+				for (int i = 0; i < m.getColunas(); i++)
+				{
+					m.incluir(j, i, m.getValor(linhaNova, i));
+					m.incluir(linhaNova, i, auxiliar[i]);
+				}
 			}
 		}
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
