@@ -21,15 +21,13 @@ public class MetodoGauss{
 			teste = HaZerosNaDiagonal();
 		}
 
-		for(int i=0; i< m.getLinhas(); i++)
+		for(int i = 0; i < m.getLinhas() ; i++)
 		{
-			for(int j=0; j<m.getColunas(); j++)
-				System.out.print(m.getValor(i,j) + " ");
-			System.out.println("");
+			tornarDiagonal(i);
+			zerarColuna(i);
 		}
 
-		tornarDiagonal1();
-		transformarEmZeros();
+
 		double[] aux = getResultado();
 
 		return getResultado();
@@ -112,27 +110,29 @@ public class MetodoGauss{
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
 	}
 	//TO DO corrigir a troca
-	private static void tornarDiagonal1(){
-		try{
-			for(int i=0; i<m.getLinhas(); i++){
-				double aux = m.getValor(i,i);
-				for(int n=0; n<m.getLinhas()+1; n++)
-					m.incluir(i, n, m.getValor(i,n)/aux);
-			}
+	private static void tornarDiagonal(int linha){
+		try
+		{
+			double aux = m.getValor(linha, linha);
+			for(int n=0; n<m.getLinhas() + 1; n++)
+				m.incluir(linha, n, m.getValor(linha,n)/aux);
 		}
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
 	}
 
 
-	private static void transformarEmZeros(){
-		try{
-			for(int i=0; i<m.getLinhas(); i++)
-				for(int n=0; n<m.getLinhas(); n++)
-					if(n!=i && m.getValor(i,n)!=0){//como não devemos zerar zero ou o que esta na diagonal principal fazemos este if
-						double[] aux = new double[m.getLinhas()+1];
-						aux = passarProVetor(aux, n, m.getValor(i,n));
-						subtrair(aux, i);
-					}
+	private static void zerarColuna(int coluna){
+		try
+		{
+			double aux = m.getValor(coluna + 1, coluna);
+			double vetorAux[] = new double[m.getColunas()];
+
+			for(int i = 0; i < m.getColunas(); i++)
+			{
+				vetorAux[i] = m.getValor(coluna, i) * -aux;
+				m.incluir(coluna + 1, i, m.getValor(coluna + 1, i) + vetorAux[i]);
+				//System.out.println(m.getValor(coluna, i) + " | " + vetorAux[i] + " | " + i);
+			}
 		}
 		catch(Exception ex){}
 	}
