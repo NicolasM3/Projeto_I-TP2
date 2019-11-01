@@ -13,12 +13,12 @@ public class MetodoGauss{
 		if(!isSolucionavel())
 			throw new Exception("Sistema de equações impossível de se resolver");
 
-		int teste = HaZerosNaDiagonal();
+		int teste = haZerosNaDiagonal();
 
 		while(teste >= 0)
 		{
 			tirarZerosDaDiagonal(teste);
-			teste = HaZerosNaDiagonal();
+			teste = haZerosNaDiagonal();
 		}
 
 		for(int i = 0; i < m.getLinhas() ; i++)
@@ -42,7 +42,7 @@ public class MetodoGauss{
 		return true;
 	}
 
-	public static boolean isSolucionavel()
+	private static boolean isSolucionavel()
 	{
 		try
 		{
@@ -68,7 +68,7 @@ public class MetodoGauss{
 	}
 
 
-	private static int HaZerosNaDiagonal()
+	private static int haZerosNaDiagonal()
 	{
 		try
 		{
