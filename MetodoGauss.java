@@ -1,4 +1,3 @@
-//TO DO: tornar classe singleton
 public class MetodoGauss{
 
 	private static Matriz m;
@@ -20,13 +19,12 @@ public class MetodoGauss{
 			tirarZerosDaDiagonal(teste);
 			teste = haZerosNaDiagonal();
 		}
-
-		for(int i = 0; i < m.getLinhas() ; i++)
+		for(int i = 0; i < m.getLinhas(); i++)
 		{
 			tornarDiagonal(i);
 			zerarColuna(i);
 		}
-
+		elementosDiferentesDeZero();
 
 		double[] aux = getResultado();
 
@@ -109,7 +107,7 @@ public class MetodoGauss{
 		}
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
 	}
-	//TO DO corrigir a troca
+
 	private static void tornarDiagonal(int linha){
 		try
 		{
@@ -125,18 +123,43 @@ public class MetodoGauss{
 		try
 		{
 			double aux = m.getValor(coluna + 1, coluna);
+
 			double vetorAux[] = new double[m.getColunas()];
 
 			for(int i = 0; i < m.getColunas(); i++)
 			{
 				vetorAux[i] = m.getValor(coluna, i) * -aux;
 				m.incluir(coluna + 1, i, m.getValor(coluna + 1, i) + vetorAux[i]);
-				//System.out.println(m.getValor(coluna, i) + " | " + vetorAux[i] + " | " + i);
 			}
 		}
 		catch(Exception ex){}
 	}
 
+	private static void elementosDiferentesDeZero(){
+		try{
+			for(int i=0; i<m.getLinhas(); i++)
+				for(int j=0; j<m.getColunas()-1; j++)
+					if(i!=j)
+						if(m.getValor(i, j)!=0){
+							zerarFinal(i,j);
+						}
+		}
+		catch(Exception e){}
+	}
+
+	private static void zerarFinal(int lin, int col){
+		try{
+			double aux = m.getValor(lin,col);
+			double vetorAux[] = new double[m.getColunas()];
+
+			for(int i = 0; i < m.getColunas(); i++)
+			{
+				vetorAux[i] = m.getValor(col, i) * -aux;
+				m.incluir(lin, i, m.getValor(lin, i) + vetorAux[i]);
+			}
+		}
+		catch(Exception e){}
+	}
 
 	private static double[] passarProVetor(double[] aux, int linha, double valorARemover){
 		try{
@@ -168,6 +191,4 @@ public class MetodoGauss{
 		catch(Exception ex){}
 		return aux;
 	}
-
-	//TO DO: metodo dividir linha pelas proximas
 }
