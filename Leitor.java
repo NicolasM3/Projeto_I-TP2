@@ -3,6 +3,13 @@ import java.io.*;
 
 public class Leitor
 {
+	/**
+	Lê um arquivo.
+	Lê uma file e retorna um objeto da classe Matriz contendo todos os valores,
+	lançando exceções se o arquivo não existir.
+	@param file arquivo a ser lido, instância da classe File.
+	@throws Exception se a instância da classe file não existir.
+	*/
 	public static Matriz LerArquivo(File file) throws Exception
 	{
 		if(!file.exists())

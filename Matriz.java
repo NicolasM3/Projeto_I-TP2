@@ -5,6 +5,8 @@ public class Matriz
 	private int linhas;
 	private int colunas;
 
+
+	//TO DO: docs desse metodo
 	public Matriz(int linhas) throws Exception
 	{
 		if(linhas < 1)
@@ -15,6 +17,15 @@ public class Matriz
 		this.colunas= linhas + 1;
 	}
 
+	/**
+	Inclui um valor.
+	Inclui um valor double na posicao (linha, coluna) da matriz,
+	lançando exceções, se a linha ou a coluna for menores que zero.
+	@param i linha.
+	@param j coluna.
+	@param valor valor a ser inserido na matriz.
+	@throws Exception se o valor da linha e da coluna for menor que 0.
+	*/
 	public void incluir(int i, int j, double valor) throws Exception
 	{
 		if(i < 0 || j < 0)
@@ -23,6 +34,15 @@ public class Matriz
 		mat[i][j] = valor;
 	}
 
+	/**
+	Pega um valor.
+	Pega um valor da matriz da posição (linha, coluna) e retorna como double,
+	lançando exceções, se a linha ou a coluna for menores que zero.
+	@param i linha.
+	@param j coluna.
+	@return um valor do tipo double
+	@throws Exception se o valor da linha e da coluna for menor que 0.
+	*/
 	public double getValor(int i, int j)throws Exception
 	{
 		if(i < 0 || j < 0)
@@ -31,11 +51,21 @@ public class Matriz
 		return mat[i][j];
 	}
 
+	/**
+	Pega a quantidade de linhas.
+`	Pega a quantidade de linhas da matriz.
+	@return a quantidade de linhas da matriz.
+	*/
 	public int getLinhas()
 	{
 		return this.linhas;
 	}
 
+	/**
+	Pega a quantidade de colunas.
+	Pega a quantidade de colunas da matriz.
+	@return a quantidade de colunas da matriz.
+	*/
 	public int getColunas()
 	{
 		return this.colunas;
@@ -55,6 +85,12 @@ public class Matriz
 		return ret;
 	} */
 
+	/**
+	    Gera uma representação textual de todo conteúdo da matriz.
+	    Produz e resulta um String com todos os nomes e telefones contidos
+	    na matriz.
+	    @return um String contendo todo o conteúdo da matriz.
+    */
 	public String toString()
 	{
 		String ret = "Matriz["+ linhas +"]["+ colunas +"] = \n";
@@ -69,6 +105,12 @@ public class Matriz
 		return ret;
 	}
 
+	/**
+	    Calcula o código de espalhamento (ou código de hash) de uma matriz.
+	    Calcula e resulta o código de espalhamento (ou código de hash, ou ainda o
+	    hashcode) da matriz representada pela instância à qual o método for aplicado.
+	    @return o código de espalhamento da agenda chamante do método.
+    */
 	public int HashCode()
 	{
 		int ret = 19185;
@@ -81,6 +123,18 @@ public class Matriz
 		ret = 3*ret + Integer.valueOf(colunas).hashCode();
 		return ret;
 	}
+
+	/**
+	    Verifica a igualdade entre duas matrizes.
+	    Verifica se o Object fornecido como parâmetro representa uma
+	    matriz igual àquela representada pela instância à qual este
+	    método for aplicado, resultando true em caso afirmativo,
+	    ou false, caso contrário.
+	    @param  obj o objeto a ser comparado com a instância à qual esse método
+	            for aplicado.
+	    @return true, caso o Object fornecido ao método e a instância chamante do
+	            método representarem agendas iguais, ou false, caso contrário.
+    */
 	public boolean Equals(Object obj)
 	{
 		if (this==obj)
@@ -105,6 +159,13 @@ public class Matriz
 		return true;
 	}
 
+	/**
+	    Constroi uma cópia da instância da classe Matriz dada.
+	    Para tanto, deve ser fornecida uma instancia da classe Matriz para ser
+	    utilizada como modelo para a construção da nova instância criada.
+	    @param modelo a instância da classe Matriz a ser usada como modelo.
+	    @throws Exception se o modelo for null.
+    */
 	public Matriz(Matriz m) throws Exception
 	{
 		 if(m==null)
@@ -114,6 +175,13 @@ public class Matriz
 		 colunas = m.colunas;
 	}
 
+	/**
+	    Clona uma matriz.
+	    Produz e resulta uma cópia da matriz representada pela instância
+	    à qual o método for aplicado.
+	    @return a cópia da matriz representada pela instância à qual
+	            o método for aplicado.
+    */
 	public Object clone()
 	{
 		Matriz ret = null;
