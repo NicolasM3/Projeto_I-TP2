@@ -19,11 +19,16 @@ public class MetodoGauss{
 			tirarZerosDaDiagonal(teste);
 			teste = haZerosNaDiagonal();
 		}
+
 		for(int i = 0; i < m.getLinhas(); i++)
 		{
 			tornarDiagonal(i);
 			zerarColuna(i);
+			//System.out.println(i);
 		}
+
+		//System.out.println(mat.toString());
+
 		elementosDiferentesDeZero();
 
 		double[] aux = getResultado();
@@ -122,14 +127,23 @@ public class MetodoGauss{
 	private static void zerarColuna(int coluna){
 		try
 		{
-			double aux = m.getValor(coluna + 1, coluna);
-
-			double vetorAux[] = new double[m.getColunas()];
-
-			for(int i = 0; i < m.getColunas(); i++)
+			for(int j = 0; j < m.getLinhas(); j++)
 			{
-				vetorAux[i] = m.getValor(coluna, i) * -aux;
-				m.incluir(coluna + 1, i, m.getValor(coluna + 1, i) + vetorAux[i]);
+				if(m.getValor(j, coluna) != 0 && j != coluna)
+				{
+					double aux = m.getValor(j, coluna);
+					//System.out.println("a : " + aux);
+
+					double vetorAux[] = new double[m.getColunas()];
+
+					for(int i = 0; i < m.getColunas(); i++)
+					{
+						vetorAux[i] = m.getValor(coluna, i) * -aux;
+						m.incluir(j, i, m.getValor(j, i) + vetorAux[i]);
+						//System.out.print(vetorAux[i] + " ");
+					}
+					//System.out.println(m.toString());
+				}
 			}
 		}
 		catch(Exception ex){}

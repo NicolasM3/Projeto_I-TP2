@@ -99,7 +99,7 @@ public class Matriz
 			for(int j=0; j<colunas; j++)
 				ret += mat[i][j] + " ";
 			ret += "\n";
-	}
+		}
 
 
 		return ret;
