@@ -25,12 +25,12 @@ public class Matriz
 	*/
 	public Matriz(int linhas) throws Exception
 	{
-		if(linhas < 1)
+		if(linhas < 1)//Verificamos se a quantidade de linhas é valida
 			throw new Exception("Número de linhas menor que 1");
 
-		mat = new double[linhas][linhas+1];
+		mat = new double[linhas][linhas+1];//Instanciamos a matriz
 		this.linhas=linhas;
-		this.colunas= linhas + 1;
+		this.colunas= linhas + 1;//Armazenamos nas colunas a quantidade de linhas + 1
 	}
 
 	/**
@@ -44,10 +44,10 @@ public class Matriz
 	*/
 	public void incluir(int i, int j, double valor) throws Exception
 	{
-		if(i < 0 || j < 0)
+		if(i < 0 || j < 0 || i > linhas || j > colunas)//Verificamos se os indices não são menores que 0 ou maiores do que a quantidade de linhas ou colunas.
 			throw new Exception("valor invalido");
 
-		mat[i][j] = valor;
+		mat[i][j] = valor;//Incluimos o valor na matriz.
 	}
 
 	/**
@@ -61,10 +61,10 @@ public class Matriz
 	*/
 	public double getValor(int i, int j)throws Exception
 	{
-		if(i < 0 || j < 0)
+		if(i < 0 || j < 0 || i > linhas || j > colunas)//Verificamos se os indices não são menores que 0 ou maiores do que a quantidade de linhas ou colunas.
 			throw new Exception("valor invalido");
 
-		return mat[i][j];
+		return mat[i][j];//Retornamos o valor presente nessa posição.
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class Matriz
 	*/
 	public int getLinhas()
 	{
-		return this.linhas;
+		return this.linhas;//Retorna a quantidade de linhas da matriz.
 	}
 
 	/**
@@ -84,22 +84,8 @@ public class Matriz
 	*/
 	public int getColunas()
 	{
-		return this.colunas;
+		return this.colunas;//Retorna a quantidade de colunas da matriz.
 	}
-
-	// TODO:  escolher toString()
-	/* public String toString()
-	{
-		String ret = "";
-		for(int i = 0; i < linhas; i++)
-			for(int j=0; j<colunas; j++)
-				ret += " valor na posicao: "+ i +" , "+ j + ": " + Double.toString(mat[i][j])+ "\n";
-
-		ret +="quanidade de linhas: "+linhas;
-		ret +="quanidade de colunas: "+colunas;
-
-		return ret;
-	} */
 
 	/**
 	    Gera uma representação textual de todo conteúdo da matriz.
