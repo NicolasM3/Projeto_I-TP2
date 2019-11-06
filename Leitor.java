@@ -5,11 +5,11 @@ import Matriz.*;
 public class Leitor
 {
 	/**
-	Lê um arquivo.
-	Lê uma file e retorna um objeto da classe Matriz contendo todos os valores,
-	lançando exceções se o arquivo não existir.
-	@param file arquivo a ser lido, instância da classe File.
-	@throws Exception se a instância da classe file não existir.
+	Lï¿½ um arquivo.
+	Lï¿½ uma file e retorna um objeto da classe Matriz contendo todos os valores,
+	lanï¿½ando exceï¿½ï¿½es se o arquivo nï¿½o existir.
+	@param file arquivo a ser lido, instï¿½ncia da classe File.
+	@throws Exception se a instï¿½ncia da classe file nï¿½o existir.
 	*/
 	public static Matriz LerArquivo(File file) throws Exception
 	{
@@ -22,10 +22,10 @@ public class Leitor
 		{
 			BufferedReader arquivo = new BufferedReader (new FileReader (file));
 
-			int qtdEquacoes = Integer.parseInt(arquivo.readLine());//Lemos a primeira linha que contem quantas equações serão.
+			int qtdEquacoes = Integer.parseInt(arquivo.readLine());//Lemos a primeira linha que contem quantas equaï¿½ï¿½es serï¿½o.
 			String a = "";
 
-			ret = new Matriz(qtdEquacoes);//Instaciamos uma matriz que recebe quantas equações serão.
+			ret = new Matriz(qtdEquacoes);//Instaciamos uma matriz que recebe quantas equaï¿½ï¿½es serï¿½o.
 
 			for (int i=0; i < qtdEquacoes; i++)
 			{
@@ -43,7 +43,6 @@ public class Leitor
 		{
 			System.err.println("Erro: " + ex);
 		}
-		return ret;//R
-		etornamos a matriz.
+		return ret;//Retornamos a matriz.
 	}
 }
