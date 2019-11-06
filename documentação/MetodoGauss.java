@@ -1,6 +1,3 @@
-package MetodoGauss;
-import Matriz.*;
-
 public class MetodoGauss{
 
 	/**
