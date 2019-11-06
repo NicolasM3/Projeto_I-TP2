@@ -1,4 +1,6 @@
 import java.io.File;
+import Matriz.*;
+import MetodoGauss.*;
 
 public class Main
 {

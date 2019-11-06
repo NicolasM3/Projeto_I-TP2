@@ -1,5 +1,6 @@
 import java.util.StringTokenizer;
 import java.io.*;
+import Matriz.*;
 
 public class Leitor
 {
