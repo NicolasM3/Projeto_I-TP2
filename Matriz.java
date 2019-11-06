@@ -1,12 +1,27 @@
+/**
+A classe Matriz representa uma simples Matriz, com base em outra matriz, que armazena os valores double, o número de linhas e oolunas.
+Instâncias desta classe permitem a relização das operações básicas de uma matriz, como incluir e pegar valores e imprimir a matriz.
+Nela encontramos, por exemplo, métodos para incluir, excluir e listar valores da matriz.
+@author Marcelo Sícoli(19185), Nícolas Oliveira(19193).
+@since 2019.
+*/
 public class Matriz
 {
+	/**
 
-	private double mat[][];
-	private int linhas;
-	private int colunas;
+	*/
+	protected double mat[][];
+	protected int linhas;
+	protected int colunas;
 
 
-	//TO DO: docs desse metodo
+	/**
+	Constroi um instância da classe matriz.
+	Recebe a quantidade de linhas e cria um objeto da classe matriz de tamanha (linhas, linhas + 1),
+	lançando exceções, se linhas for menor que 1.
+	@param linhas quantidade de linhas da matriz.
+	@throws Exception se a quantidade de linha for menor que 1.
+	*/
 	public Matriz(int linhas) throws Exception
 	{
 		if(linhas < 1)
