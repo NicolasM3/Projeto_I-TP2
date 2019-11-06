@@ -9,17 +9,11 @@ public class Main
 		try
 		{
 			System.out.print("Digite o nome do arquivo: ");
-			String arq =  Teclado.getUmString();
-			Matriz coeficientes = Leitor.LerArquivo(new File(arq));
-			/*for(int i = 0; i < coeficientes.getLinhas(); i++)
-			{
-				for(int j = 0; j < coeficientes.getColunas(); j++)
-					System.out.print(coeficientes.getValor(i, j) + " ");
-				System.out.println();
-			}*/
-			double[] a = MetodoGauss.Calcular(coeficientes);
+			String arq =  Teclado.getUmString();//Lemos o arquivo.
+			Matriz coeficientes = Leitor.LerArquivo(new File(arq));//Instaciamos uma matriz com os valores lidos pelo leitor.
+			double[] a = MetodoGauss.Calcular(coeficientes); //Resolvemos a equação e armazenamos o resultado em um vetor.
 			for(int i=0; i<a.length; i++)
-				System.out.println(a[i]);
+				System.out.println(a[i]);//Printamos o resultado na tela.
 
 		}
 		catch(Exception ex)

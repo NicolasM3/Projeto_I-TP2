@@ -13,7 +13,7 @@ public class Leitor
 	*/
 	public static Matriz LerArquivo(File file) throws Exception
 	{
-		if(!file.exists())
+		if(!file.exists())//Verificamos se o arquivo existe
 			throw new Exception("nenhum documento definido");
 
 		Matriz ret = null;
@@ -22,19 +22,19 @@ public class Leitor
 		{
 			BufferedReader arquivo = new BufferedReader (new FileReader (file));
 
-			int qtdEquacoes = Integer.parseInt(arquivo.readLine());
+			int qtdEquacoes = Integer.parseInt(arquivo.readLine());//Lemos a primeira linha que contem quantas equações serão.
 			String a = "";
 
-			ret = new Matriz(qtdEquacoes);
+			ret = new Matriz(qtdEquacoes);//Instaciamos uma matriz que recebe quantas equações serão.
 
 			for (int i=0; i < qtdEquacoes; i++)
 			{
-				StringTokenizer quebrador = new StringTokenizer (arquivo.readLine());
+				StringTokenizer quebrador = new StringTokenizer (arquivo.readLine());//Instaciamos uma classe que quebra a string em partes.
 				int coeficiente = 0;
 				while (quebrador.hasMoreTokens())
 				{
 					a = quebrador.nextToken();
-					ret.incluir(i, coeficiente, Double.parseDouble(a.trim()));
+					ret.incluir(i, coeficiente, Double.parseDouble(a.trim()));//Inserimos na matriz o valor separado pelo separador.
 					coeficiente++;
 				}
 			}
@@ -43,6 +43,7 @@ public class Leitor
 		{
 			System.err.println("Erro: " + ex);
 		}
-		return ret;
+		return ret;//R
+		etornamos a matriz.
 	}
 }
