@@ -25,7 +25,9 @@ public class MetodoGauss{
 		m = (Matriz)mat.clone();									// faz um clone da matriz
 
 		if(!isSolucionavel())										// verifica se o sistema é solucionável
+		{
 			throw new Exception("Sistema de equações impossível de se resolver");
+		}
 
 		int auxiliar = haZerosNaDiagonal();							// declara auxiliar que recebe a linha se há zeros na diagonal
 																	// haZerosNaDiagonal() -> retorna < se não houver zeros
@@ -54,17 +56,17 @@ public class MetodoGauss{
 	Recebe um vetor de valores e um vetor e verifca se esses valores estão contido nesse outro vetor,
 	lançando exceções, caso od vetores double forem nulos.
 	@param vetorDivisao Vetor com valores a serem verificados.
-	@param vetorDivisao2 Segundo vetor para comparação.
+	@param vetorDivisao2 valor que será procurado
 	@throws Exception se um dos vetores passados forem nulos.
 	@return um boolean dizendo se estes valores estão em ambos os valores.
 	*/
-	protected static boolean estaNoVetor(double[] vetorDivisao, double[] vetorDivisao2) throws Exception				// TO DO: fazer comentários
+	protected static boolean estaNoVetor(double[] vetorDivisao, double vetorDivisao2) throws Exception
 	{
-		if(vetorDivisao == null || vetorDivisao2 == null)					// verifica exceções
-			throw new Exception("Um dos vetores nulos");
+		if(vetorDivisao == null)											// verifica exceção
+			throw new Exception("vetor nulo");
 
 		for(int i=0; i<m.getLinhas(); i++)									// passa por todos os elementos do vetor
-			if(vetorDivisao[i] != vetorDivisao2[i])							// verifica se os elementos
+			if(vetorDivisao[i] != vetorDivisao2)							// verifica se os elementos de i é igual ao valor passado para procurar
 				return false;
 
 		return true;
@@ -79,18 +81,23 @@ public class MetodoGauss{
 	{
 		try
 		{
-			double[] divisao = new double[m.getLinhas()];					// declara dois vetore do tamanho de coeficientes da equação
-			double[] divisao2 = new double[m.getLinhas()];					// que receberão as divisões
-
-			for(int i = 0; i < m.getLinhas()-2; i++)						// passa por todas as colunas até a penultima
+			for(int i = 0; i < m.getLinhas()-1; i++)								// passa por todas as colunas até a penultima
 			{
-				for(int j = 0; j < m.getLinhas(); j++)						// passa por todas as linhas
+				double[] divisoes = new double[m.getLinhas()];						// declara um vetor do tamanho de coeficientes da equação
+				for(int j = 0; j < m.getLinhas(); j++)								// passa por todas as linhas
 				{
-					divisao[j] = m.getValor(i, j) / m.getValor(i + 1, i);	// TO DO: talvez arrumar isso
-					divisao2[j] = m.getValor(i+1, j) / m.getValor(i+2, i);  //
+					double divisao2 = m.getValor(i, j) / m.getValor(i + 1, j);		// faz a divisão de um valor pelo valor da linha de baixo
+					divisoes[j] = divisao2;											// adiciona no vetor divisões
 				}
-				if(estaNoVetor(divisao, divisao2))
-					return false;
+
+				double valorQueNaoPodeRepetir = divisoes[0];						// pega um valor do vetor, esse valor não pode se repetir em todo o vetor
+				int qtdFoi = 0;														// quantas vezes se repetiu
+
+				if(estaNoVetor(divisoes, valorQueNaoPodeRepetir))					// verifica se está no vetor
+					qtdFoi++;														// soma 1 a quantidade de vezes que foi
+
+				if(qtdFoi == m.getLinhas() - 1)										// se o qtdFoi for igual a quantidade de coeficientes
+					return false;													// retorna false
 			}
 		}
 		catch(Exception ex)
