@@ -6,7 +6,7 @@ public class MetodoGauss{
 	/**
 	instânciando objeto da classe matriz para armazenar os valores.
 	*/
-	protected static Matriz m;
+	protected static Matriz m;									// matriz
 
 	/**
 	Calcula o valor das variáveis.
@@ -19,33 +19,34 @@ public class MetodoGauss{
 	*/
 	public static double[] Calcular(Matriz mat)throws Exception
 	{
-		if(mat == null)
+		if(mat == null)												// verifica exceções
 			throw new Exception("Matriz nula");
 
-		m = (Matriz)mat.clone();
+		m = (Matriz)mat.clone();									// faz um clone da matriz
 
-		if(!isSolucionavel())
+		if(!isSolucionavel())										// verifica se o sistema é solucionável
 			throw new Exception("Sistema de equações impossível de se resolver");
 
-		int auxiliar = haZerosNaDiagonal();
+		int auxiliar = haZerosNaDiagonal();							// declara auxiliar que recebe a linha se há zeros na diagonal
+																	// haZerosNaDiagonal() -> retorna < se não houver zeros
+																	//				  	   -> retorna a linha se houver zeros
 
-		while(auxiliar >= 0)
+
+		while(auxiliar >= 0)										// enquanto há zeros na diagonal
 		{
-			tirarZerosDaDiagonal(auxiliar);
-			auxiliar = haZerosNaDiagonal();
+			tirarZerosDaDiagonal(auxiliar);							// tira s zero, da posição auxiliar, da diagonal
+			auxiliar = haZerosNaDiagonal();							// verifica se ainda há zeros na diagonal
 		}
 
-		for(int i = 0; i < m.getLinhas(); i++)
+		for(int i = 0; i < m.getLinhas(); i++)						// passa por todas as colunas
 		{
-			tornarDiagonal(i);
-			zerarColuna(i);
+			tornarDiagonal(i);										// torna a diagonal presente na coluna 1
+			zerarColuna(i);											// zera a coluna
 		}
 
-		elementosDiferentesDeZero();
+		elementosDiferentesDeZero();								// TO DO: fazer o comentário disso
 
-		double[] aux = getResultado();
-
-		return getResultado();
+		return getResultado();										// retorna o resultado
 	}
 
 	/**
@@ -57,13 +58,13 @@ public class MetodoGauss{
 	@throws Exception se um dos vetores passados forem nulos.
 	@return um boolean dizendo se estes valores estão em ambos os valores.
 	*/
-	protected static boolean estaNoVetor(double[] vetorDivisao, double[] vetorDivisao2) throws Exception
+	protected static boolean estaNoVetor(double[] vetorDivisao, double[] vetorDivisao2) throws Exception				// TO DO: fazer comentários
 	{
-		if(vetorDivisao == null || vetorDivisao2 == null)
+		if(vetorDivisao == null || vetorDivisao2 == null)					// verifica exceções
 			throw new Exception("Um dos vetores nulos");
 
-		for(int i=0; i<m.getLinhas(); i++)
-			if(vetorDivisao[i] != vetorDivisao2[i])
+		for(int i=0; i<m.getLinhas(); i++)									// passa por todos os elementos do vetor
+			if(vetorDivisao[i] != vetorDivisao2[i])							// verifica se os elementos
 				return false;
 
 		return true;
@@ -78,14 +79,15 @@ public class MetodoGauss{
 	{
 		try
 		{
-			double[] divisao = new double[m.getLinhas()];
-			double[] divisao2 = new double[m.getLinhas()];
-			for(int i = 0; i < m.getLinhas()-2; i++)
+			double[] divisao = new double[m.getLinhas()];					// declara dois vetore do tamanho de coeficientes da equação
+			double[] divisao2 = new double[m.getLinhas()];					// que receberão as divisões
+
+			for(int i = 0; i < m.getLinhas()-2; i++)						// passa por todas as colunas até a penultima
 			{
-				for(int j = 0; j < m.getLinhas(); j++)
+				for(int j = 0; j < m.getLinhas(); j++)						// passa por todas as linhas
 				{
-					divisao[j] = m.getValor(i, j) / m.getValor(i + 1, i);
-					divisao2[j] = m.getValor(i+1, j) / m.getValor(i + 2, i);
+					divisao[j] = m.getValor(i, j) / m.getValor(i + 1, i);	// TO DO: talvez arrumar isso
+					divisao2[j] = m.getValor(i+1, j) / m.getValor(i+2, i);  //
 				}
 				if(estaNoVetor(divisao, divisao2))
 					return false;
@@ -108,13 +110,13 @@ public class MetodoGauss{
 	{
 		try
 		{
-			for(int i=0; i<m.getLinhas(); i++)
-				if(m.getValor(i,i) == 0)
-					return i;
+			for(int i=0; i<m.getLinhas(); i++)		// passa por todas as linhas
+				if(m.getValor(i,i) == 0)			// verifica se a posição (linha, linha) é 0
+					return i;						// retorna a linha
 		}
 		catch(Exception ex)
 		{}
-		return -1;
+		return -1;									// retorna um valor negativo
 	}
 
 	/**
@@ -125,26 +127,27 @@ public class MetodoGauss{
 	protected static void tirarZerosDaDiagonal(int linha){
 		try
 		{
-			for(int j = 0; j < m.getLinhas() - 1; j++)
+			for(int j = 0; j < m.getLinhas() - 1; j++)			// passa por todas as linhas
 			{
-				int linhaNova = j - 1;
+				int linhaNova = j - 1;							// inicia o valor da linha que receberá a linha anterio
 
-				if(linhaNova < 0)
-					linhaNova = m.getLinhas() - 1;
+				if(linhaNova < 0)								// se a linha for menor que zero
+					linhaNova = m.getLinhas() - 1;				// ele voltará para a ultima linha
 
-				double auxiliar[] = new double[m.getColunas()];
+				double auxiliar[] = new double[m.getColunas()]; // vetor auxiliar que receberá uma linha
 
-				for(int i = 0; i < m.getColunas(); i++)
+				for(int i = 0; i < m.getColunas(); i++)			// passa por todas as colunas da matriz
 				{
-					auxiliar[i] = m.getValor(j, i);
+					auxiliar[i] = m.getValor(j, i);				// vetor auxiliar recebe os valores da linha i
 				}
 
-				for (int i = 0; i < m.getColunas(); i++)
+				for (int i = 0; i < m.getColunas(); i++)		// passa por todas as colunas da matriz
 				{
-					m.incluir(j, i, m.getValor(linhaNova, i));
-					m.incluir(linhaNova, i, auxiliar[i]);
+					m.incluir(j, i, m.getValor(linhaNova, i));	// inclui o valor da linhaNova na linha j
+					m.incluir(linhaNova, i, auxiliar[i]);		// inclui o valor do vetor auxiliar na linhaNova
 				}
 			}
+			// Move as linha para cima até retirar os zeros da diagonal
 		}
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
 	}
@@ -157,11 +160,12 @@ public class MetodoGauss{
 	protected static void tornarDiagonal(int linha){
 		try
 		{
-			double aux = m.getValor(linha, linha);
-			for(int n=0; n<m.getLinhas() + 1; n++)
-				m.incluir(linha, n, m.getValor(linha,n)/aux);
+			double aux = m.getValor(linha, linha);				// declara a variável que receberá o valor necessário para dividir
+			for(int n=0; n<m.getLinhas() + 1; n++)				// passa por todo o vetor
+				m.incluir(linha, n, m.getValor(linha,n)/aux);	// inclui no vetor o os valores da posição linha, n dividido por aux
 		}
 		catch(Exception ex){}//como todos os valores existem e estão nos parametros da matriz não há possibilidade de erro
+		// torna a diagonal 1
 	}
 
 	/**
@@ -170,26 +174,27 @@ public class MetodoGauss{
 	@param coluna Coluna que será zerada.
 	*/
 	protected static void zerarColuna(int coluna){
+		// coluna => coluna que será zerada
 		try
 		{
-			for(int j = 0; j < m.getLinhas(); j++)
+			for(int j = 0; j < m.getLinhas(); j++)							// passa por todas as linhas
 			{
-				if(m.getValor(j, coluna) != 0 && j != coluna)
+				if(m.getValor(j, coluna) != 0 && j != coluna)				// verifica se o valor de (j, coluna) não é 0 ou se (j, coluna) não é a diagonal
 				{
-					double aux = m.getValor(j, coluna);
-					//System.out.println("a : " + aux);
+					double aux = m.getValor(j, coluna);						// pega o valor da posição (j, coluna)
 
 					double vetorAux[] = new double[m.getColunas()];
 
 					for(int i = 0; i < m.getColunas(); i++)
 					{
-						vetorAux[i] = m.getValor(coluna, i) * -aux;
-						m.incluir(j, i, m.getValor(j, i) + vetorAux[i]);
+						vetorAux[i] = m.getValor(coluna, i) * -aux;			// adiciona no vetor o valor da linha com o sinal trocado
+						m.incluir(j, i, m.getValor(j, i) + vetorAux[i]);	// soma os valores do vetorAuxiliar na linha da Matriz
 					}
 				}
 			}
 		}
 		catch(Exception ex){}
+		// zera a coluna
 	}
 
 	/**
@@ -234,13 +239,14 @@ public class MetodoGauss{
 	@return um vetor double.
 	*/
 	protected static double[] getResultado(){
-		double[] aux = null;
+		double[] aux = null;							// vetor na qual será colocado a resposta
 		try{
-			 aux = new double[m.getLinhas()];
-			 for(int i=0; i<m.getLinhas(); i++)
-			 	aux[i] = m.getValor(i, m.getLinhas());
+			 aux = new double[m.getLinhas()];			// tamanho = variaveis = coeficientes
+			 for(int i=0; i<m.getLinhas(); i++)			// passa por todas as linhas
+			 	aux[i] = m.getValor(i, m.getLinhas());	// pega os calores da ultima coluna
 		}
 		catch(Exception ex){}
+		// colocou todas as respostas no vetor auxiliar
 		return aux;
 	}
 }
