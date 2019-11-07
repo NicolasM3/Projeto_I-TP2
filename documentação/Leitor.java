@@ -1,18 +1,19 @@
 import java.util.StringTokenizer;
 import java.io.*;
+import Matriz.*;
 
 public class Leitor
 {
 	/**
-	Lê um arquivo.
-	Lê uma file e retorna um objeto da classe Matriz contendo todos os valores,
-	lançando exceções se o arquivo não existir.
-	@param file arquivo a ser lido, instância da classe File.
-	@throws Exception se a instância da classe file não existir.
+	Lï¿½ um arquivo.
+	Lï¿½ uma file e retorna um objeto da classe Matriz contendo todos os valores,
+	lanï¿½ando exceï¿½ï¿½es se o arquivo nï¿½o existir.
+	@param file arquivo a ser lido, instï¿½ncia da classe File.
+	@throws Exception se a instï¿½ncia da classe file nï¿½o existir.
 	*/
 	public static Matriz LerArquivo(File file) throws Exception
 	{
-		if(!file.exists())
+		if(!file.exists())//Verificamos se o arquivo existe
 			throw new Exception("nenhum documento definido");
 
 		Matriz ret = null;
@@ -21,19 +22,19 @@ public class Leitor
 		{
 			BufferedReader arquivo = new BufferedReader (new FileReader (file));
 
-			int qtdEquacoes = Integer.parseInt(arquivo.readLine());
+			int qtdEquacoes = Integer.parseInt(arquivo.readLine());//Lemos a primeira linha que contem quantas equaï¿½ï¿½es serï¿½o.
 			String a = "";
 
-			ret = new Matriz(qtdEquacoes);
+			ret = new Matriz(qtdEquacoes);//Instaciamos uma matriz que recebe quantas equaï¿½ï¿½es serï¿½o.
 
 			for (int i=0; i < qtdEquacoes; i++)
 			{
-				StringTokenizer quebrador = new StringTokenizer (arquivo.readLine());
+				StringTokenizer quebrador = new StringTokenizer (arquivo.readLine());//Instaciamos uma classe que quebra a string em partes.
 				int coeficiente = 0;
 				while (quebrador.hasMoreTokens())
 				{
 					a = quebrador.nextToken();
-					ret.incluir(i, coeficiente, Double.parseDouble(a.trim()));
+					ret.incluir(i, coeficiente, Double.parseDouble(a.trim()));//Inserimos na matriz o valor separado pelo separador.
 					coeficiente++;
 				}
 			}
@@ -42,6 +43,6 @@ public class Leitor
 		{
 			System.err.println("Erro: " + ex);
 		}
-		return ret;
+		return ret;//Retornamos a matriz.
 	}
 }
