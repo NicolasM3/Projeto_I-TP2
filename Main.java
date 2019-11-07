@@ -12,9 +12,11 @@ public class Main
 			String arq =  Teclado.getUmString();//Lemos o arquivo.
 			Matriz coeficientes = Leitor.LerArquivo(new File(arq));//Instaciamos uma matriz com os valores lidos pelo leitor.
 			double[] a = MetodoGauss.Calcular(coeficientes); //Resolvemos a equação e armazenamos o resultado em um vetor.
-			System.out.println("As soluções são respectivamente: ");//Printamos o resultado na tela.
-			for(int i=0; i<a.length; i++)
+			for(int i=0; i<a.length; i++){
+				int aux= i+1;
+				System.out.print(""+aux+"° variavel: ");
 				System.out.println(a[i]);//Printamos o resultado na tela.
+			}
 
 		}
 		catch(Exception ex)

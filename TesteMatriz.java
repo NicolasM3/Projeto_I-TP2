@@ -1,18 +1,17 @@
-import java.io.IOException;
-import java.io.BufferedReader;
+import java.io.*;
+import Matriz.*;
 
 public class TesteMatriz
 {
-	BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+	public static void main (String[] args)
+    {
+		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 
-	for (;;)
-	{
-		System.out.print ("Capacidade desejada para a Agenda: ");
+		System.out.print ("Capacidade desejada para a Matriz: ");
 		try
 		{
 			int cap = Integer.parseInt (entrada.readLine ());
-			agenda  = new AgendaConsultavel (cap);
-			break;
+			Matriz m  = new Matriz(cap);
 		}
 		catch (IOException e)
 		{}
@@ -23,6 +22,21 @@ public class TesteMatriz
 		catch (Exception e)
 		{
 			System.err.println (e.getMessage()+"\n\n");
+			}
+		for (;;)
+		{
+			try
+			{
+
+			}
+			catch (NumberFormatException e)
+			{
+				System.err.println ("Nao foi digitado um numero inteiro\n\n");
+			}
+			catch (Exception e)
+			{
+				System.err.println (e.getMessage()+"\n\n");
+			}
 		}
 	}
 }
