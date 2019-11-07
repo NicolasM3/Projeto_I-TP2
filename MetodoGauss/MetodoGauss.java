@@ -27,22 +27,19 @@ public class MetodoGauss{
 		if(!isSolucionavel())
 			throw new Exception("Sistema de equações impossível de se resolver");
 
-		int teste = haZerosNaDiagonal();
+		int auxiliar = haZerosNaDiagonal();
 
-		while(teste >= 0)
+		while(auxiliar >= 0)
 		{
-			tirarZerosDaDiagonal(teste);
-			teste = haZerosNaDiagonal();
+			tirarZerosDaDiagonal(auxiliar);
+			auxiliar = haZerosNaDiagonal();
 		}
 
 		for(int i = 0; i < m.getLinhas(); i++)
 		{
 			tornarDiagonal(i);
 			zerarColuna(i);
-			//System.out.println(i);
 		}
-
-		//System.out.println(mat.toString());
 
 		elementosDiferentesDeZero();
 
@@ -87,7 +84,6 @@ public class MetodoGauss{
 			{
 				for(int j = 0; j < m.getLinhas(); j++)
 				{
-					//System.err.println(m.getValor(j, i) + " " + m.getValor(j+1, i) + "\n " + i);
 					divisao[j] = m.getValor(i, j) / m.getValor(i + 1, i);
 					divisao2[j] = m.getValor(i+1, j) / m.getValor(i + 2, i);
 				}
@@ -114,9 +110,7 @@ public class MetodoGauss{
 		{
 			for(int i=0; i<m.getLinhas(); i++)
 				if(m.getValor(i,i) == 0)
-				{
 					return i;
-				}
 		}
 		catch(Exception ex)
 		{}
@@ -191,9 +185,7 @@ public class MetodoGauss{
 					{
 						vetorAux[i] = m.getValor(coluna, i) * -aux;
 						m.incluir(j, i, m.getValor(j, i) + vetorAux[i]);
-						//System.out.print(vetorAux[i] + " ");
 					}
-					//System.out.println(m.toString());
 				}
 			}
 		}
