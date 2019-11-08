@@ -1,32 +1,38 @@
 package Matriz;
 /**
-A classe Matriz representa uma simples Matriz, com base em outra matriz, que armazena os valores double, o número de linhas e oolunas.
-Instâncias desta classe permitem a relização das operações básicas de uma matriz, como incluir e pegar valores e imprimir a matriz.
-Nela encontramos, por exemplo, métodos para incluir, excluir e listar valores da matriz.
-@author Marcelo Sícoli(19185), Nícolas Oliveira(19193).
+A classe Matriz representa uma simples Matriz, com base em outra matriz, que armazena os valores double, o nï¿½mero de linhas e oolunas.
+Instï¿½ncias desta classe permitem a relizaï¿½ï¿½o das operaï¿½ï¿½es bï¿½sicas de uma matriz, como incluir e pegar valores e imprimir a matriz.
+Nela encontramos, por exemplo, mï¿½todos para incluir, excluir e listar valores da matriz.
+@author Marcelo Sï¿½coli(19185), Nï¿½colas Oliveira(19193).
 @since 2019.
 */
 public class Matriz
 {
 	/**
-
+	Variavel que armazena uma matriz double.
 	*/
 	protected double mat[][];
+	/**
+	Variavel que armazena a quantidade de linhas
+	*/
 	protected int linhas;
+	/**
+		Variavel que armazena a quantidade de colunas
+	*/
 	protected int colunas;
 
 
 	/**
-	Constroi um instância da classe matriz.
+	Constroi um instï¿½ncia da classe matriz.
 	Recebe a quantidade de linhas e cria um objeto da classe matriz de tamanha (linhas, linhas + 1),
-	lançando exceções, se linhas for menor que 1.
+	lanï¿½ando exceï¿½ï¿½es, se linhas for menor que 1.
 	@param linhas quantidade de linhas da matriz.
 	@throws Exception se a quantidade de linha for menor que 1.
 	*/
 	public Matriz(int linhas) throws Exception
 	{
-		if(linhas < 1)//Verificamos se a quantidade de linhas é valida
-			throw new Exception("Número de linhas menor que 1");
+		if(linhas < 1)//Verificamos se a quantidade de linhas ï¿½ valida
+			throw new Exception("Nï¿½mero de linhas menor que 1");
 
 		mat = new double[linhas][linhas+1];//Instanciamos a matriz
 		this.linhas=linhas;
@@ -36,7 +42,7 @@ public class Matriz
 	/**
 	Inclui um valor.
 	Inclui um valor double na posicao (linha, coluna) da matriz,
-	lançando exceções, se a linha ou a coluna for menores que zero.
+	lanï¿½ando exceï¿½ï¿½es, se a linha ou a coluna for menores que zero.
 	@param i linha.
 	@param j coluna.
 	@param valor valor a ser inserido na matriz.
@@ -44,7 +50,7 @@ public class Matriz
 	*/
 	public void incluir(int i, int j, double valor) throws Exception
 	{
-		if(i < 0 || j < 0 || i > linhas || j > colunas)//Verificamos se os indices não são menores que 0 ou maiores do que a quantidade de linhas ou colunas.
+		if(i < 0 || j < 0 || i > linhas || j > colunas)//Verificamos se os indices nï¿½o sï¿½o menores que 0 ou maiores do que a quantidade de linhas ou colunas.
 			throw new Exception("valor invalido");
 
 		mat[i][j] = valor;//Incluimos o valor na matriz.
@@ -52,8 +58,8 @@ public class Matriz
 
 	/**
 	Pega um valor.
-	Pega um valor da matriz da posição (linha, coluna) e retorna como double,
-	lançando exceções, se a linha ou a coluna for menores que zero.
+	Pega um valor da matriz da posiï¿½ï¿½o (linha, coluna) e retorna como double,
+	lanï¿½ando exceï¿½ï¿½es, se a linha ou a coluna for menores que zero.
 	@param i linha.
 	@param j coluna.
 	@return um valor do tipo double
@@ -61,10 +67,10 @@ public class Matriz
 	*/
 	public double getValor(int i, int j)throws Exception
 	{
-		if(i < 0 || j < 0 || i > linhas || j > colunas)//Verificamos se os indices não são menores que 0 ou maiores do que a quantidade de linhas ou colunas.
+		if(i < 0 || j < 0 || i > linhas || j > colunas)//Verificamos se os indices nï¿½o sï¿½o menores que 0 ou maiores do que a quantidade de linhas ou colunas.
 			throw new Exception("valor invalido");
 
-		return mat[i][j];//Retornamos o valor presente nessa posição.
+		return mat[i][j];//Retornamos o valor presente nessa posiï¿½ï¿½o.
 	}
 
 	/**
@@ -88,10 +94,10 @@ public class Matriz
 	}
 
 	/**
-	    Gera uma representação textual de todo conteúdo da matriz.
+	    Gera uma representaï¿½ï¿½o textual de todo conteï¿½do da matriz.
 	    Produz e resulta um String com todos os nomes e telefones contidos
 	    na matriz.
-	    @return um String contendo todo o conteúdo da matriz.
+	    @return um String contendo todo o conteï¿½do da matriz.
     */
 	public String toString()
 	{
@@ -108,10 +114,10 @@ public class Matriz
 	}
 
 	/**
-	    Calcula o código de espalhamento (ou código de hash) de uma matriz.
-	    Calcula e resulta o código de espalhamento (ou código de hash, ou ainda o
-	    hashcode) da matriz representada pela instância à qual o método for aplicado.
-	    @return o código de espalhamento da agenda chamante do método.
+	    Calcula o cï¿½digo de espalhamento (ou cï¿½digo de hash) de uma matriz.
+	    Calcula e resulta o cï¿½digo de espalhamento (ou cï¿½digo de hash, ou ainda o
+	    hashcode) da matriz representada pela instï¿½ncia ï¿½ qual o mï¿½todo for aplicado.
+	    @return o cï¿½digo de espalhamento da agenda chamante do mï¿½todo.
     */
 	public int HashCode()
 	{
@@ -128,14 +134,14 @@ public class Matriz
 
 	/**
 	    Verifica a igualdade entre duas matrizes.
-	    Verifica se o Object fornecido como parâmetro representa uma
-	    matriz igual àquela representada pela instância à qual este
-	    método for aplicado, resultando true em caso afirmativo,
-	    ou false, caso contrário.
-	    @param  obj o objeto a ser comparado com a instância à qual esse método
+	    Verifica se o Object fornecido como parï¿½metro representa uma
+	    matriz igual ï¿½quela representada pela instï¿½ncia ï¿½ qual este
+	    mï¿½todo for aplicado, resultando true em caso afirmativo,
+	    ou false, caso contrï¿½rio.
+	    @param  obj o objeto a ser comparado com a instï¿½ncia ï¿½ qual esse mï¿½todo
 	            for aplicado.
-	    @return true, caso o Object fornecido ao método e a instância chamante do
-	            método representarem agendas iguais, ou false, caso contrário.
+	    @return true, caso o Object fornecido ao mï¿½todo e a instï¿½ncia chamante do
+	            mï¿½todo representarem agendas iguais, ou false, caso contrï¿½rio.
     */
 	public boolean Equals(Object obj)
 	{
@@ -162,10 +168,10 @@ public class Matriz
 	}
 
 	/**
-	    Constroi uma cópia da instância da classe Matriz dada.
+	    Constroi uma cï¿½pia da instï¿½ncia da classe Matriz dada.
 	    Para tanto, deve ser fornecida uma instancia da classe Matriz para ser
-	    utilizada como modelo para a construção da nova instância criada.
-	    @param modelo a instância da classe Matriz a ser usada como modelo.
+	    utilizada como modelo para a construï¿½ï¿½o da nova instï¿½ncia criada.
+	    @param modelo a instï¿½ncia da classe Matriz a ser usada como modelo.
 	    @throws Exception se o modelo for null.
     */
 	public Matriz(Matriz m) throws Exception
@@ -179,10 +185,10 @@ public class Matriz
 
 	/**
 	    Clona uma matriz.
-	    Produz e resulta uma cópia da matriz representada pela instância
-	    à qual o método for aplicado.
-	    @return a cópia da matriz representada pela instância à qual
-	            o método for aplicado.
+	    Produz e resulta uma cï¿½pia da matriz representada pela instï¿½ncia
+	    ï¿½ qual o mï¿½todo for aplicado.
+	    @return a cï¿½pia da matriz representada pela instï¿½ncia ï¿½ qual
+	            o mï¿½todo for aplicado.
     */
 	public Object clone()
 	{
