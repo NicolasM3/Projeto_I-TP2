@@ -1,6 +1,12 @@
 package MetodoGauss;
 import Matriz.*;
 
+/**
+A classe MetodoGauss é uma classe singleton que tem um unico metodo publico este metodo calcula um sistema de equações lineares pelo metodo de Gauss.
+@author Marcelo Sícoli(19185), Nícolas Oliveira(19193).
+@since 2019.
+*/
+
 public class MetodoGauss{
 
 	/**
