@@ -2,6 +2,11 @@ import java.util.StringTokenizer;
 import java.io.*;
 import Matriz.*;
 
+/**
+A classe Leitor, uma classe singleton com apenas um metodo, representa um simples leitor de arquivos que os le e extrai uma matriz deles.
+@author Marcelo Sícoli(19185), Nícolas Oliveira(19193).
+@since 2019.
+*/
 public class Leitor
 {
 	/**
