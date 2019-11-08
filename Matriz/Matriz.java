@@ -1,6 +1,6 @@
 package Matriz;
 /**
-A classe Matriz representa uma simples Matriz, com base em outra matriz, que armazena os valores double, o número de linhas e colunas.
+A classe Matriz representa uma simples Matriz, com base em outra matriz, que armazena os valores double, o número de linhas e oolunas.
 Instâncias desta classe permitem a relização das operações básicas de uma matriz, como incluir e pegar valores e imprimir a matriz.
 Nela encontramos, por exemplo, métodos para incluir, excluir e listar valores da matriz.
 @author Marcelo Sícoli(19185), Nícolas Oliveira(19193).
@@ -9,16 +9,10 @@ Nela encontramos, por exemplo, métodos para incluir, excluir e listar valores da
 public class Matriz
 {
 	/**
-	Variavel que armazena uma matriz double.
+
 	*/
 	protected double mat[][];
-	/**
-	Variavel que armazena a quantidade de linhas
-	*/
 	protected int linhas;
-	/**
-		Variavel que armazena a quantidade de colunas
-	*/
 	protected int colunas;
 
 
