@@ -6,7 +6,6 @@ public class TesteMatriz
 	BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 	for (;;)
 	{
-		System.out.print ("Capacidade desejada para a Agenda: ");
 		try
 		{
 			System.out.print ("Capacidade desejada para a Matriz: ");
